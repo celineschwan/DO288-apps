@@ -107,8 +107,10 @@ pipeline {
                     input message: "Promote to Staging?"
                 }
                 script {
-                       openshift.tag("${DEV_PROJECT}/${APP_NAME}:latest", "${STAGE_PROJECT}/${APP_NAME}:stage")
-                }
+                  openshift.withCluster() {
+                    openshift.tag("${DEV_PROJECT}/${APP_NAME}:latest", "${STAGE_PROJECT}/${APP_NAME}:stage")
+                 }
+               }
             }
         }
 
