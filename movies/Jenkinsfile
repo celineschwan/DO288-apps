@@ -88,7 +88,8 @@ pipeline {
         }
 
         stage('Wait for deployment in DEV env') {
-            script {
+            steps {
+              script {
                 openshift.withCluster() {
                   openshift.withProject(env.DEV_PROJECT) {
                     openshift.selector("dc", "${APP_NAME}").related("pods").untilEach(1) {
@@ -97,6 +98,7 @@ pipeline {
                  }
                }
             }
+          }
         }
 
         stage('Promote to Staging Env') {
