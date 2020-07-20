@@ -143,8 +143,8 @@ pipeline {
                                 return (it.object().status.phase == "Running")
                             }
                         }
+                     }
                         echo "Deployment to Staging env is complete. Access the API endpoint at the URL http://${routeHost}/movies."
-                    }
                 }
             }
         }
